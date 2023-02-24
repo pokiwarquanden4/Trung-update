@@ -57,10 +57,11 @@ public class ConfigService  {
         System.out.println("Clear: " + removeList);
         for (String removeKey: removeList){
             configCache.remove(removeKey);
+
         }
     }
 
-    @Scheduled(fixedDelay = 60000L)
+    @Scheduled(fixedDelay = 900000l)
     void handleExpired(){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         ArrayList<String> newRemoveList = new ArrayList<>();
@@ -79,7 +80,7 @@ public class ConfigService  {
 
     public boolean checkDifferent(Timestamp timestamp, Timestamp now){
         Long different = ((timestamp.getTime() - now.getTime()));
-        if(different > 30000l){
+        if(different > 300000l){
             return true;
         }else {
             return false;
