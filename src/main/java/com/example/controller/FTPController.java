@@ -16,7 +16,7 @@ import java.io.IOException;
 public class FTPController {
     @Autowired
     private IFTPReaderService ftpReaderService;
-    @GetMapping("/bitelws/v1/ftpFile/{fileName}/{urlKey}")
+    @GetMapping("/bitelws/v1/ftpFile/{fileName}")
     public ResponseEntity<ResponseObject> readFile(@PathVariable String fileName) throws IOException {
         return ftpReaderService.readFile(fileName);
     }

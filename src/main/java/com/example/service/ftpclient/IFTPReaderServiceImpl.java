@@ -24,7 +24,7 @@ public class IFTPReaderServiceImpl implements IFTPReaderService {
     private final int port = 21;
     private final String user = "admin";
     private final String pass = "quang01239748392";
-    private String remoteFilePath = "ftpflie/src/main/java/com/example/PNG" ;
+    private String remoteFilePath = "saleservice/src/main/java/com/example/saleservice/constant/PNG" ;
     private FTPClient ftpClient = new FTPClient();
     private InputStream inputStream;
 
@@ -62,6 +62,8 @@ public class IFTPReaderServiceImpl implements IFTPReaderService {
     public InputStream Reader(String serial) throws IOException {
         getConnection();
         inputStream = ftpClient.retrieveFileStream("/" + remoteFilePath + "/" + serial + ".png");
+        System.out.println(inputStream);
+        System.out.println("/" + remoteFilePath + "/" + serial + ".png");
         if (inputStream != null) {
             byte[] buffer = new byte[1024];
             int bytesRead;
