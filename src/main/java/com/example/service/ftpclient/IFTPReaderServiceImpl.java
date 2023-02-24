@@ -1,6 +1,7 @@
 package com.example.service.ftpclient;
 
 
+import com.example.dto.EmtyObject;
 import com.example.dto.ResponseObject;
 import com.example.dto.ResponseUtils;
 import org.apache.commons.net.ftp.FTPClient;
@@ -100,7 +101,7 @@ public class IFTPReaderServiceImpl implements IFTPReaderService {
         switch (status){
             case "FTP Connection Error":
                 return ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject(3,  "", "Lỗi Connect")
+                        new ResponseObject(3,  new Object(), "Lỗi Connect")
                 );
             default:
                 break;
@@ -112,7 +113,7 @@ public class IFTPReaderServiceImpl implements IFTPReaderService {
                         new ResponseObject(0,  new ResponseUtils(base64String), "Thành Công")
                 ):
                 ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                        new ResponseObject(4, "", "Không tìm thấy file")
+                        new ResponseObject(4, new EmtyObject(), "Không tìm thấy file")
                 );
     }
 }

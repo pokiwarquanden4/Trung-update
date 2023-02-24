@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.EmtyObject;
 import com.example.dto.ResponseObject;
 import com.example.service.ftpclient.IFTPReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class FTPController {
             return ftpReaderService.readFile(fileName);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject(2,  "", "Lỗi hệ thống (exception)")
+                new ResponseObject(2,  new EmtyObject(), "Lỗi hệ thống (exception)")
             );
         }
     }
