@@ -16,13 +16,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.ConnectException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Map;
 
 @Service
-public class IFTPReaderServiceImpl implements IFTPReaderService {
+public class IFTPReaderServiceImpl implements IFTPReaderService  {
     private final String server = "127.0.0.1";
     private final int port = 21;
     private final String user = "admin";
@@ -35,7 +31,6 @@ public class IFTPReaderServiceImpl implements IFTPReaderService {
     @PostConstruct
     public void init() {
         ftpClient = new FTPClient();
-
         getConnection();
     }
 
@@ -52,14 +47,27 @@ public class IFTPReaderServiceImpl implements IFTPReaderService {
     public boolean getConnection() {
         try {
             if(!ftpClient.isConnected()){
+                status = "";
                 ftpClient.connect(server, port);
                 ftpClient.login(user, pass);
             }
+
             return true;
         }catch (IOException e) {
             return false;
         }
     }
+
+//    public boolean checkActiveFTPServerSide(){
+//        try {
+//            ftpClient.sendNoOp();
+//            return true;
+//        } catch (IOException e) {
+//            return false;
+//        }
+//
+//    }
+
 
     @Scheduled(fixedDelay = 900000l)
     void handleDisconnectSchedule(){
@@ -101,7 +109,7 @@ public class IFTPReaderServiceImpl implements IFTPReaderService {
         switch (status){
             case "FTP Connection Error":
                 return ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject(3,  new Object(), "Lỗi Connect")
+                        new ResponseObject(3,  new EmtyObject(), "Lỗi Connect")
                 );
             default:
                 break;
