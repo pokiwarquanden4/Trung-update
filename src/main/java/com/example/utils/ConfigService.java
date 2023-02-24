@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.utils;
 
 import com.example.entity.Config;
 import com.example.repositoty.IConfigCacheRepository;
@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Configuration
 @Getter
 @EnableScheduling
-public class ConfigUtils {
+public class ConfigService  {
     @Autowired
     IConfigCacheRepository configCacheRepository;
     ConcurrentHashMap<String, Map<String, Timestamp>> configCache = new ConcurrentHashMap<>();
